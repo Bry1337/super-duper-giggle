@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/value_32dp"
+    >
+
+  <EditText
+      android:id="@+id/edtDebit"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_above="@+id/edtCredit"
+      android:layout_centerInParent="true"
+      android:hint="@string/phone_number_hint"
+      android:imeOptions="actionDone"
+      android:inputType="phone"
+      android:maxLines="1"
+      android:textColor="@color/colorPrimary"
+      android:layout_marginBottom="@dimen/value_32dp"
+      />
+
+  <EditText
+      android:id="@+id/edtCredit"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:hint="@string/number_decimal_hint"
+      android:imeOptions="actionDone"
+      android:inputType="numberDecimal"
+      android:maxLines="1"
+      android:textColor="@color/colorPrimary"
+      />
+
+</RelativeLayout>

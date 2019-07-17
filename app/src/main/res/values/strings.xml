@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Credit Notebook</string>
+  <string name="credit_list">Credit List</string>
+  <string name="error_loading_list">Error Loading List</string>
+  <string name="debit">DEBIT</string>
+  <string name="credit">CREDIT</string>
+  <string name="number_decimal_hint">0.00</string>
+  <string name="phone_number_hint">+639xxxxxxxx</string>
+  <string name="transaction">Transaction</string>
+  <string name="person_name_hint">Person Name</string>
 </resources>
