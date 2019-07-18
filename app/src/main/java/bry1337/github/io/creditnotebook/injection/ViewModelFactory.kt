@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import bry1337.github.io.creditnotebook.model.database.AppDatabase
+import bry1337.github.io.creditnotebook.presentation.addtransaction.AddTransactionViewModel
 import bry1337.github.io.creditnotebook.presentation.home.HomeViewModel
 import bry1337.github.io.creditnotebook.util.Constants
 
@@ -18,8 +19,14 @@ class ViewModelFactory(private val activity: AppCompatActivity) : ViewModelProvi
   override fun <T : ViewModel?> create(modelClass: Class<T>): T {
     if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
       val db = Room.databaseBuilder(activity.applicationContext, AppDatabase::class.java,
-          Constants.PERSON_DATABSE).build()
+          Constants.PERSON_DATABASE).build()
       return HomeViewModel(db.personDao()) as T
+    } else if (modelClass.isAssignableFrom(AddTransactionViewModel::class.java)) {
+      val personDB = Room.databaseBuilder(activity.applicationContext, AppDatabase::class.java,
+          Constants.PERSON_DATABASE).build()
+      val financeDB = Room.databaseBuilder(activity.applicationContext, AppDatabase::class.java,
+          Constants.FINANCE_DATABASE).build()
+      return AddTransactionViewModel(personDB.personDao(), financeDB.financeDao()) as T
     }
     throw IllegalArgumentException("Unknown ViewModel Class")
   }

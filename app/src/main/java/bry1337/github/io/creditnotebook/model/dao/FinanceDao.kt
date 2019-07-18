@@ -24,7 +24,7 @@ interface FinanceDao {
     fun getFinance(id: Int): Finance
 
     @Insert
-    fun insert(finance: Finance)
+    fun insert(finance: Finance): Long
 
     @Query("Delete from finance")
     fun deleteAll()

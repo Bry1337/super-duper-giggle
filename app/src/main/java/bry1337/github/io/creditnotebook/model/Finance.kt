@@ -10,10 +10,10 @@ import com.google.gson.annotations.SerializedName
  * @author edwardbryan.abergas@gmail.com
  */
 @Entity
-data class Finance(@PrimaryKey val id: Int) {
+data class Finance(@SerializedName("personId") var personId: Int = 0) {
 
-    @SerializedName("personId")
-    var personId: Int = 0
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 
     @SerializedName("debit")
     var debit: Int = 0

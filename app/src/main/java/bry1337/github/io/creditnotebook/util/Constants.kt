@@ -7,6 +7,7 @@ package bry1337.github.io.creditnotebook.util
  */
 class Constants {
   companion object {
-    val PERSON_DATABSE = "person"
+    val PERSON_DATABASE = "person"
+    val FINANCE_DATABASE = "finance"
   }
 }

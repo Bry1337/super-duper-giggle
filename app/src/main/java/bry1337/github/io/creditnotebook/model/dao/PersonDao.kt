@@ -21,7 +21,7 @@ interface PersonDao {
     fun getPerson(id: Int): Person
 
     @Insert
-    fun insert(person: Person)
+    fun insert(person: Person): Long
 
     @Query("Delete from person")
     fun deleteAll()

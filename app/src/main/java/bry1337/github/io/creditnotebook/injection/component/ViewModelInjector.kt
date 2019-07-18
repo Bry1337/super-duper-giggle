@@ -1,6 +1,7 @@
 package bry1337.github.io.creditnotebook.injection.component
 
 import bry1337.github.io.creditnotebook.injection.module.NetworkModule
+import bry1337.github.io.creditnotebook.presentation.addtransaction.AddTransactionViewModel
 import bry1337.github.io.creditnotebook.presentation.home.HomeViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -15,6 +16,8 @@ import javax.inject.Singleton
 interface ViewModelInjector {
 
     fun inject(homeViewModel: HomeViewModel)
+
+    fun inject(addTransactionViewModel: AddTransactionViewModel)
 
     @Component.Builder
     interface Builder {

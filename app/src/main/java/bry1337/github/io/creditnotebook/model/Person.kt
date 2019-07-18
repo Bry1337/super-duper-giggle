@@ -10,23 +10,23 @@ import com.google.gson.annotations.SerializedName
  * @author edwardbryan.abergas@gmail.com
  */
 @Entity
-data class Person(@PrimaryKey val id: Int) {
+data class Person(@SerializedName("name") var name: String? = null) {
 
-    @SerializedName("name")
-    var name: String? = null
+  @PrimaryKey(autoGenerate = true)
+  var id: Int = 0
 
-    @SerializedName("phoneNumber")
-    var phoneNumber: String? = null
+  @SerializedName("phoneNumber")
+  var phoneNumber: String? = null
 
-    @SerializedName("debit")
-    var debit: Int = 0
+  @SerializedName("debit")
+  var debit: Int = 0
 
-    @SerializedName("credit")
-    var credit: Int = 0
+  @SerializedName("credit")
+  var credit: Int = 0
 
-    @SerializedName("totalCredit")
-    var totalCredit: Int = credit - debit
+  @SerializedName("totalCredit")
+  var totalCredit: Int = credit - debit
 
-    @SerializedName("date")
-    var date: String? = null
+  @SerializedName("date")
+  var date: String? = null
 }

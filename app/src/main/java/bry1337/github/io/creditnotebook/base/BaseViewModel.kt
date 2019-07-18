@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import bry1337.github.io.creditnotebook.injection.component.DaggerViewModelInjector
 import bry1337.github.io.creditnotebook.injection.component.ViewModelInjector
 import bry1337.github.io.creditnotebook.injection.module.NetworkModule
+import bry1337.github.io.creditnotebook.presentation.addtransaction.AddTransactionViewModel
 import bry1337.github.io.creditnotebook.presentation.home.HomeViewModel
 
 /**
@@ -21,6 +22,8 @@ abstract class BaseViewModel : ViewModel() {
     private fun inject() {
         when (this) {
             is HomeViewModel -> injector.inject(this)
+
+            is AddTransactionViewModel -> injector.inject(this)
         }
     }
 }

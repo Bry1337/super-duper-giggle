@@ -1,5 +1,6 @@
 package bry1337.github.io.creditnotebook.presentation.home
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import bry1337.github.io.creditnotebook.R
 import bry1337.github.io.creditnotebook.base.BaseViewModel
@@ -19,6 +20,7 @@ class HomeViewModel(private val personDao: PersonDao) : BaseViewModel() {
 
 
   val errorMessage: MutableLiveData<Int> = MutableLiveData()
+  val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
   private lateinit var subscription: Disposable
 
@@ -27,13 +29,20 @@ class HomeViewModel(private val personDao: PersonDao) : BaseViewModel() {
     subscription.dispose()
   }
 
+  init {
+    loadPersonList()
+  }
+
   private fun loadPersonList() {
-    subscription = Observable.just(personDao.all).subscribeOn(Schedulers.io()).observeOn(
-        AndroidSchedulers.mainThread()).subscribe({ result ->
-      onRetrievePersonListSuccess(result)
-    }, {
-      onRetrievePersonListError()
-    })
+    subscription =
+        Observable.fromCallable { personDao.all }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onRetrievePersonListStart() }
+            .doOnTerminate { onRetrievePersonListFinish() }
+            .subscribe({ result ->
+              onRetrievePersonListSuccess(result)
+            }, {
+              onRetrievePersonListError()
+            })
   }
 
   private fun onRetrievePersonListError() {
@@ -42,6 +51,15 @@ class HomeViewModel(private val personDao: PersonDao) : BaseViewModel() {
 
   private fun onRetrievePersonListSuccess(result: List<Person>?) {
 
+  }
+
+  private fun onRetrievePersonListStart() {
+    loadingVisibility.value = View.VISIBLE
+    errorMessage.value = null
+  }
+
+  private fun onRetrievePersonListFinish() {
+    loadingVisibility.value = View.GONE
   }
 
 

@@ -1,104 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     >
-  <LinearLayout
-      android:id="@+id/llTransactionType"
+  <RelativeLayout
       android:layout_width="match_parent"
-      android:layout_height="?attr/actionBarSize"
-      android:background="@color/colorPrimary"
-      android:orientation="horizontal"
-      android:weightSum="2"
+      android:layout_height="match_parent"
       >
-
     <LinearLayout
-        android:id="@+id/llDebit"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?selectableItemBackground"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:id="@+id/llTransactionType"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:weightSum="2"
         >
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:text="@string/debit"
-          android:textColor="@android:color/white"
-          android:textSize="@dimen/value_16sp"
-          android:textStyle="bold"
+      <LinearLayout
+          android:id="@+id/llDebit"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:background="?selectableItemBackground"
+          android:gravity="center"
+          android:orientation="vertical"
+          >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/debit"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/value_16sp"
+            android:textStyle="bold"
+            />
+
+      </LinearLayout>
+
+      <View
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="0.005"
+          android:background="@android:color/white"
           />
 
+      <LinearLayout
+          android:id="@+id/llCredit"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:background="?selectableItemBackground"
+          android:gravity="center"
+          android:orientation="vertical"
+          >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/credit"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/value_16sp"
+            android:textStyle="bold"
+            />
+
+      </LinearLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="0.005"
-        android:background="@android:color/white"
+    <EditText
+        android:id="@+id/edtPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llTransactionType"
+        android:layout_marginEnd="@dimen/value_64dp"
+        android:layout_marginStart="@dimen/value_16dp"
+        android:hint="@string/person_name_hint"
+        android:imeOptions="actionNext"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        android:textColor="@color/colorPrimary"
         />
 
-    <LinearLayout
-        android:id="@+id/llCredit"
-        android:layout_width="0dp"
+    <include
+        layout="@layout/layout_debit"
+        android:id="@+id/layoutDebit"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?selectableItemBackground"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
+        android:layout_below="@+id/edtPersonName"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/value_32dp"
+        android:visibility="gone"
+        />
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:text="@string/credit"
-          android:textColor="@android:color/white"
-          android:textSize="@dimen/value_16sp"
-          android:textStyle="bold"
-          />
-
-    </LinearLayout>
-  </LinearLayout>
-
-  <EditText
-      android:id="@+id/edtPersonName"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/llTransactionType"
-      android:layout_marginEnd="@dimen/value_64dp"
-      android:layout_marginStart="@dimen/value_16dp"
-      android:imeOptions="actionNext"
-      android:inputType="textPersonName"
-      android:maxLines="1"
-      android:textColor="@color/colorPrimary"
-      android:hint="@string/person_name_hint"
-      />
-
-  <include
-      layout="@layout/layout_debit"
-      android:id="@+id/layoutDebit"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_below="@+id/edtPersonName"
-      android:layout_centerInParent="true"
-      android:layout_margin="@dimen/value_32dp"
-      android:visibility="gone"
-      />
-
-  <include
-      layout="@layout/layout_credit"
-      android:id="@+id/layoutCredit"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_below="@+id/edtPersonName"
-      android:layout_centerInParent="true"
-      android:layout_margin="@dimen/value_32dp"
-      android:visibility="gone"
-      />
+    <include
+        layout="@layout/layout_credit"
+        android:id="@+id/layoutCredit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edtPersonName"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/value_32dp"
+        android:visibility="gone"
+        />
 
 
-</RelativeLayout>
+  </RelativeLayout>
+</layout>
