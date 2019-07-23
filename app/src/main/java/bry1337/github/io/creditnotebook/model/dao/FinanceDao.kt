@@ -20,8 +20,11 @@ interface FinanceDao {
     @Query("Select * from finance where personId == :personId")
     fun getFinanceByPerson(personId: Int): Finance
 
-    @Query("Select * from finance WHERE id == :id")
+    @Query("Select * from finance where id == :id")
     fun getFinance(id: Int): Finance
+
+    @Query("Select SUM(credit) as total from finance where personId == :id")
+    fun getAllCreditsOfPerson(id: Int): Int
 
     @Insert
     fun insert(finance: Finance): Long

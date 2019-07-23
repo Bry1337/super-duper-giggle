@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
-
   <data>
     <variable
         name="viewModel"
@@ -21,11 +20,51 @@
         android:layout_height="match_parent"
         >
 
+      <RelativeLayout
+          android:id="@+id/rlHeader"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:layout_marginBottom="@dimen/value_8dp"
+          android:layout_marginEnd="@dimen/value_16dp"
+          android:layout_marginStart="@dimen/value_16dp"
+          android:layout_marginTop="@dimen/value_8dp"
+          android:background="@android:color/white"
+          android:gravity="center_vertical"
+          >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:padding="@dimen/value_8dp"
+            android:textSize="@dimen/value_16sp"
+            android:textStyle="bold"
+            android:text="@string/person_name"
+            />
+
+        <TextView
+            android:id="@+id/tvTotalCredit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:padding="@dimen/value_8dp"
+            android:textSize="@dimen/value_16sp"
+            android:textStyle="bold"
+            android:text="@string/total_credit"
+            />
+
+      </RelativeLayout>
       <androidx.recyclerview.widget.RecyclerView
+          android:layout_below="@+id/rlHeader"
+          android:id="@+id/rvTransactionsByPerson"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:background="@android:color/darker_gray"
           android:orientation="vertical"
+          app:adapter="@{viewModel.getCreditListAdapter()}"
           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+          tools:listitem="@layout/item_person_total_credit"
           />
 
       <ProgressBar

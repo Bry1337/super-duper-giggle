@@ -9,4 +9,13 @@
   <string name="transaction">Transaction</string>
   <string name="person_name_hint">Person Name</string>
   <string name="error_adding_transaction">Error adding transaction</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="person_name_cannot_be_blank">Person name cannot be blank</string>
+    <string name="phone_number_cannot_be_blank">Phone number cannot be blank</string>
+  <string name="transaction_has_been_added">Transaction has been added</string>
+  <string name="dummy_name">Dummy Name</string>
+  <string name="total_credit">Total Credit</string>
+  <string name="total_credit_placeholder">Total Credit: %s</string>
+  <string name="person_name">Person Name</string>
+  <string name="debit_value_cannot_be_blank">Debit value cannot be blank</string>
 </resources>

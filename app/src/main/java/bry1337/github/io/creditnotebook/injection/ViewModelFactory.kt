@@ -20,7 +20,9 @@ class ViewModelFactory(private val activity: AppCompatActivity) : ViewModelProvi
     if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
       val db = Room.databaseBuilder(activity.applicationContext, AppDatabase::class.java,
           Constants.PERSON_DATABASE).build()
-      return HomeViewModel(db.personDao()) as T
+      val financeDB = Room.databaseBuilder(activity.applicationContext, AppDatabase::class.java,
+          Constants.FINANCE_DATABASE).build()
+      return HomeViewModel(db.personDao(), financeDB.financeDao()) as T
     } else if (modelClass.isAssignableFrom(AddTransactionViewModel::class.java)) {
       val personDB = Room.databaseBuilder(activity.applicationContext, AppDatabase::class.java,
           Constants.PERSON_DATABASE).build()

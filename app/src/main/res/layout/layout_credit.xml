@@ -6,13 +6,13 @@
     >
 
   <EditText
-      android:id="@+id/edtDebit"
+      android:id="@+id/edtPhoneNumber"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_above="@+id/edtCredit"
       android:layout_centerInParent="true"
       android:hint="@string/phone_number_hint"
-      android:imeOptions="actionDone"
+      android:imeOptions="actionNext"
       android:inputType="phone"
       android:maxLines="1"
       android:textColor="@color/colorPrimary"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+  <data>
+    <variable
+        name="viewModel"
+        type="bry1337.github.io.creditnotebook.presentation.home.CreditViewModel"
+        />
+  </data>
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/value_4dp"
+      android:layout_marginEnd="@dimen/value_16dp"
+      android:layout_marginStart="@dimen/value_16dp"
+      android:layout_marginTop="@dimen/value_4dp"
+      android:background="@android:color/white"
+      android:gravity="center_vertical"
+      >
+
+    <TextView
+        android:id="@+id/personName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:padding="@dimen/value_8dp"
+        android:textSize="@dimen/value_16sp"
+        android:textStyle="bold"
+        app:mutableText="@{viewModel.getName()}"
+        tools:text="@string/dummy_name"
+        />
+
+    <TextView
+        android:id="@+id/totalCredit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/value_8dp"
+        android:textSize="@dimen/value_16sp"
+        android:textStyle="bold"
+        tools:text="@string/dummy_name"
+        app:mutableText="@{viewModel.getCredit()}"
+        />
+
+  </RelativeLayout>
+</layout>

@@ -4,4 +4,6 @@
   <dimen name="value_16sp">16sp</dimen>
   <dimen name="value_16dp">16dp</dimen>
   <dimen name="value_64dp">64dp</dimen>
+  <dimen name="value_8dp">8dp</dimen>
+  <dimen name="value_4dp">4dp</dimen>
 </resources>

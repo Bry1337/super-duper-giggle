@@ -22,55 +22,109 @@ import io.reactivex.schedulers.Schedulers
  */
 class AddTransactionViewModel(private val personDao: PersonDao, private val financeDao: FinanceDao) : BaseViewModel() {
 
-  val errorMessage: MutableLiveData<Int> = MutableLiveData()
-  val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
+    val errorMessage: MutableLiveData<Int> = MutableLiveData()
+    val successMessage: MutableLiveData<Int> = MutableLiveData()
+    val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
-  private lateinit var subscription: Disposable
+    private lateinit var subscription: Disposable
 
-  override fun onCleared() {
-    super.onCleared()
-    subscription.dispose()
-  }
+    override fun onCleared() {
+        super.onCleared()
+        subscription.dispose()
+    }
 
-  fun createPersonObjectForCredit(personName: String, phoneNumber: String, creditAmount: Int) {
-    val person = Person(personName)
-    person.phoneNumber = phoneNumber
-    person.credit = creditAmount
-  }
+    fun createPersonObject(personName: String, phoneNumber: String, creditAmount: Int, debitAmount: Int) {
+        val person = Person(personName)
+        if(creditAmount > 0) {
+            person.phoneNumber = phoneNumber
+            person.credit = creditAmount
+            insertNewEntryForCredit(person)
+        }else{
+            person.debit = debitAmount
+            insertNewEntryForDebit(person)
+        }
+    }
 
-  private fun insertNewEntryForCredit(person: Person) {
-    subscription = Observable.fromCallable { personDao.insert(person) }
-        .concatMap { personId ->
-          val date = getCurrentDateTime()
-          val dateInString = date.toString("yyyy/MM/dd HH:mm:ss")
-          val finance = Finance(personId.toInt())
-          finance.credit = person.credit
-          finance.date = dateInString
-          Observable.fromCallable { financeDao.insert(finance) }
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-        .doOnSubscribe { onInsertProcessStart() }
-        .doOnTerminate { loadingVisibility.value = View.GONE }
-        .subscribe({ result ->
-          onSuccessfulInsert(result)
-        }, {
-          onInsertError()
-        })
-  }
+    private fun insertNewEntryForCredit(person: Person) {
+        subscription = Observable.fromCallable { personDao.insert(person) }
+            .concatMap { personId ->
+                val date = getCurrentDateTime()
+                val dateInString = date.toString("yyyy/MM/dd HH:mm:ss")
+                val finance = Finance(personId.toInt())
+                finance.credit = person.credit
+                finance.date = dateInString
+                Observable.fromCallable { financeDao.insert(finance) }
+            }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onInsertProcessStart() }
+            .doOnTerminate { loadingVisibility.value = View.GONE }
+            .subscribe({ result ->
+                onSuccessfulInsert(result)
+            }, {
+                onInsertError()
+            })
+    }
 
-  private fun onSuccessfulInsert(result: Long) {
+    private fun insertNewEntryForDebit(person: Person) {
+        subscription = Observable.fromCallable { personDao.insert(person) }
+            .concatMap { personId ->
+                val date = getCurrentDateTime()
+                val dateInString = date.toString("yyyy/MM/dd HH:mm:ss")
+                val finance = Finance(personId.toInt())
+                finance.credit = person.credit
+                finance.date = dateInString
+                Observable.fromCallable { financeDao.insert(finance) }
+            }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { onInsertProcessStart() }
+            .doOnTerminate { loadingVisibility.value = View.GONE }
+            .subscribe({ result ->
+                onSuccessfulInsert(result)
+            }, {
+                onInsertError()
+            })
+    }
 
-  }
+    private fun onSuccessfulInsert(result: Long) {
+        successMessage.value = R.string.transaction_has_been_added
+    }
 
-  private fun onInsertError() {
-    errorMessage.value = R.string.error_adding_transaction
-  }
+    private fun onInsertError() {
+        errorMessage.value = R.string.error_adding_transaction
+    }
 
-  private fun onInsertProcessStart() {
-    loadingVisibility.value = View.VISIBLE
-    errorMessage.value = null
-  }
+    private fun onInsertProcessStart() {
+        loadingVisibility.value = View.VISIBLE
+        errorMessage.value = null
+    }
 
-  private fun onInsertProcessFinish() {
-    loadingVisibility.value = View.GONE
-  }
+    private fun onInsertProcessFinish() {
+        loadingVisibility.value = View.GONE
+    }
+
+    fun fieldsNotEmptyForCredit(personName: String, phoneNumber: String, creditAmount: String): Boolean {
+        if (personName.isBlank()) {
+            errorMessage.value = R.string.person_name_cannot_be_blank
+            return false
+        }
+        if(phoneNumber.isBlank()){
+            errorMessage.value = R.string.phone_number_cannot_be_blank
+            return false
+        }
+        if(creditAmount.isBlank()){
+            errorMessage.value = R.string.phone_number_cannot_be_blank
+            return false
+        }
+        return true
+    }
+
+    fun fieldsNotEmptyForDebit(personName: String, debitAmount: String): Boolean {
+        if (personName.isBlank()) {
+            errorMessage.value = R.string.person_name_cannot_be_blank
+            return false
+        }
+        if (debitAmount.isBlank()) {
+            errorMessage.value = R.string.debit_value_cannot_be_blank
+            return false
+        }
+        return true
+    }
 }
