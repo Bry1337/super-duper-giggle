@@ -12,10 +12,10 @@
   <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/value_4dp"
+      android:layout_marginBottom="@dimen/value_1dp"
       android:layout_marginEnd="@dimen/value_16dp"
       android:layout_marginStart="@dimen/value_16dp"
-      android:layout_marginTop="@dimen/value_4dp"
+      android:layout_marginTop="@dimen/value_1dp"
       android:background="@android:color/white"
       android:gravity="center_vertical"
       >

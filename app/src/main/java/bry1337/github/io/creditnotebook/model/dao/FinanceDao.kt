@@ -14,24 +14,30 @@ import bry1337.github.io.creditnotebook.model.Finance
 @Dao
 interface FinanceDao {
 
-    @get:Query("Select * from finance")
-    val all: List<Finance>
+  @get:Query("Select * from finance")
+  val all: List<Finance>
 
-    @Query("Select * from finance where personId == :personId")
-    fun getFinanceByPerson(personId: Int): Finance
+  @Query("Select * from finance where personId = :personId")
+  fun getFinanceByPerson(personId: Int): Finance
 
-    @Query("Select * from finance where id == :id")
-    fun getFinance(id: Int): Finance
+  @Query("Select * from finance where id = :id")
+  fun getFinance(id: Int): Finance
 
-    @Query("Select SUM(credit) as total from finance where personId == :id")
-    fun getAllCreditsOfPerson(id: Int): Int
+  @Query("Select SUM(credit) as total from finance where personId = :id")
+  fun getAllCreditsOfPerson(id: Int): Int
 
-    @Insert
-    fun insert(finance: Finance): Long
+  @Query("Select SUM(credit) - SUM(debit) as total from finance where personId = :id")
+  fun getTotalCreditsOfPerson(id: Int): Int
 
-    @Query("Delete from finance")
-    fun deleteAll()
+  @Query("Select * from finance where personId = :id")
+  fun getTransactionhistoryOfPerson(id: Int): List<Finance>
 
-    @Delete
-    fun delete(finance: Finance)
+  @Insert
+  fun insert(finance: Finance): Long
+
+  @Query("Delete from finance")
+  fun deleteAll()
+
+  @Delete
+  fun delete(finance: Finance)
 }

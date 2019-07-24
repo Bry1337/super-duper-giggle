@@ -13,6 +13,7 @@ import bry1337.github.io.creditnotebook.MainActivity
 import bry1337.github.io.creditnotebook.R
 import bry1337.github.io.creditnotebook.databinding.FragmentHomeBinding
 import bry1337.github.io.creditnotebook.injection.ViewModelFactory
+import bry1337.github.io.creditnotebook.model.Person
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -22,6 +23,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : Fragment() {
 
+  private val clickListener: CreditClickListener = this::onCreditClicked
   private lateinit var viewModel: HomeViewModel
   private lateinit var activityContext: MainActivity
   private lateinit var binding: FragmentHomeBinding
@@ -36,13 +38,13 @@ class HomeFragment : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     viewModel = ViewModelProviders.of(this, ViewModelFactory(activityContext)).get(HomeViewModel::class.java)
     binding.viewModel = viewModel
-
+    viewModel.setAdapterclickListener(clickListener)
     viewModel.totalCredits.observe(this, Observer { totalCredit ->
       if (totalCredit != null) tvTotalCredit.text = String.format(getString(R.string.total_credit_placeholder),
           totalCredit.toString())
     })
 
-    addNewCredit.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionToTransaction()) }
+    addNewCredit.setOnClickListener { findNavController().navigate(HomeFragmentDirections.actionToTransaction(0)) }
   }
 
   override fun onAttach(context: Context?) {
@@ -53,5 +55,10 @@ class HomeFragment : Fragment() {
   override fun onResume() {
     super.onResume()
     viewModel.loadPersonList()
+  }
+
+  private fun onCreditClicked(person: Person) {
+    val navDirections = HomeFragmentDirections.actionToPersonTransaction(person.id)
+    view?.let { findNavController().navigate(navDirections) }
   }
 }

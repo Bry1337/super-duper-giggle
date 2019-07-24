@@ -18,4 +18,7 @@
   <string name="total_credit_placeholder">Total Credit: %s</string>
   <string name="person_name">Person Name</string>
   <string name="debit_value_cannot_be_blank">Debit value cannot be blank</string>
+  <string name="person_transaction">Person Transaction</string>
+  <string name="something_went_wrong">Something went wrong</string>
+  <string name="error_loading_person_information">Error loading person information</string>
 </resources>

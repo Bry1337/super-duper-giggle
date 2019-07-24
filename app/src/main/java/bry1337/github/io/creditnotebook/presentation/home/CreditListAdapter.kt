@@ -14,9 +14,12 @@ import bry1337.github.io.creditnotebook.util.OnBindViewHolder
  *
  * @author edwardbryan.abergas@gmail.com
  */
+typealias CreditClickListener = (Person) -> Unit
+
 class CreditListAdapter : RecyclerView.Adapter<CreditListAdapter.CreditListViewHolder>() {
 
   private lateinit var creditList: List<Person>
+  private lateinit var creditClickListener: CreditClickListener
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreditListViewHolder {
     val binding: ItemPersonTotalCreditBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
@@ -30,11 +33,16 @@ class CreditListAdapter : RecyclerView.Adapter<CreditListAdapter.CreditListViewH
 
   override fun onBindViewHolder(holder: CreditListViewHolder, position: Int) {
     holder.onBind(creditList[position])
+    holder.itemView.setOnClickListener { creditClickListener(creditList[position]) }
   }
 
   fun updateCreditList(personList: List<Person>) {
     this.creditList = personList
     notifyDataSetChanged()
+  }
+
+  fun setCreditClickListener(creditClickListener: CreditClickListener){
+    this.creditClickListener = creditClickListener
   }
 
   inner class CreditListViewHolder(private val binding: ItemPersonTotalCreditBinding) :

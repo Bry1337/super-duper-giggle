@@ -6,7 +6,7 @@
   <data>
     <variable
         name="viewModel"
-        type="bry1337.github.io.creditnotebook.presentation.home.HomeViewModel"
+        type="bry1337.github.io.creditnotebook.presentation.persontransaction.PersonTransactionViewModel"
         />
   </data>
 
@@ -21,11 +21,10 @@
         >
 
       <RelativeLayout
-          android:id="@+id/rlHeader"
+          android:id="@+id/rlPersonTransactionHeader"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_alignParentTop="true"
-          android:layout_marginBottom="@dimen/value_8dp"
           android:layout_marginEnd="@dimen/value_16dp"
           android:layout_marginStart="@dimen/value_16dp"
           android:layout_marginTop="@dimen/value_8dp"
@@ -37,33 +36,66 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:padding="@dimen/value_8dp"
+            android:text="@string/person_name"
             android:textSize="@dimen/value_16sp"
             android:textStyle="bold"
-            android:text="@string/person_name"
+            app:mutableText="@{viewModel.getPersonName()}"
             />
 
         <TextView
-            android:id="@+id/tvTotalCredit"
+            android:id="@+id/tvPersonTransactionTotalCredits"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:padding="@dimen/value_8dp"
+            android:text="@string/total_credit"
             android:textSize="@dimen/value_16sp"
             android:textStyle="bold"
-            android:text="@string/total_credit"
             />
 
       </RelativeLayout>
+
+      <LinearLayout
+          android:id="@+id/rlPersonDebitCreditheader"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/rlPersonTransactionHeader"
+          android:gravity="center_vertical|end"
+          android:orientation="horizontal"
+          >
+
+        <TextView
+            android:layout_width="@dimen/value_110dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="@dimen/value_8dp"
+            android:text="@string/debit"
+            android:textSize="@dimen/value_16sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/tvCredit"
+            android:layout_width="@dimen/value_110dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="@dimen/value_8dp"
+            android:text="@string/credit"
+            android:textSize="@dimen/value_16sp"
+            android:textStyle="bold"
+            />
+
+      </LinearLayout>
       <androidx.recyclerview.widget.RecyclerView
-          android:layout_below="@+id/rlHeader"
-          android:id="@+id/rvTransactionsByPerson"
+          android:id="@+id/rvPersonTransaction"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_below="@+id/rlPersonDebitCreditheader"
           android:background="@android:color/darker_gray"
           android:orientation="vertical"
-          app:adapter="@{viewModel.getCreditListAdapter()}"
+          app:adapter="@{viewModel.getTransactionListAdapter()}"
           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-          tools:listitem="@layout/item_person_total_credit"
+          tools:listitem="@layout/item_person_transaction"
           />
 
       <ProgressBar
@@ -75,7 +107,7 @@
 
     </RelativeLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNewCredit"
+        android:id="@+id/btnAddNewTransaction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_plus"

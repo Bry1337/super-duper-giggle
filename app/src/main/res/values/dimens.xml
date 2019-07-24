@@ -6,4 +6,13 @@
   <dimen name="value_64dp">64dp</dimen>
   <dimen name="value_8dp">8dp</dimen>
   <dimen name="value_4dp">4dp</dimen>
+  <dimen name="value_1dp">1dp</dimen>
+  <dimen name="value_2dp">2dp</dimen>
+  <dimen name="value_24dp">24dp</dimen>
+  <dimen name="value_200dp">200dp</dimen>
+  <dimen name="value_150dp">150dp</dimen>
+  <dimen name="value_120dp">120dp</dimen>
+  <dimen name="value_130dp">130dp</dimen>
+  <dimen name="value_100dp">100dp</dimen>
+  <dimen name="value_110dp">110dp</dimen>
 </resources>

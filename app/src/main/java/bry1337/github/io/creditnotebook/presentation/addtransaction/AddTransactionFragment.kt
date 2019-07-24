@@ -43,6 +43,12 @@ class AddTransactionFragment : Fragment() {
     viewModel.successMessage.observe(this, Observer { successMessage ->
       showSuccessMessage(successMessage)
     })
+    viewModel.personObject.observe(this, Observer { personObject ->
+      if (personObject != null) {
+        edtPersonName.setText(personObject.name)
+        edtPersonName.isEnabled = false
+      }
+    })
     llDebit.setOnClickListener {
       layoutDebit.visibility = View.VISIBLE
       layoutCredit.visibility = View.GONE
@@ -74,6 +80,13 @@ class AddTransactionFragment : Fragment() {
               0, Integer.parseInt(edtDebit.text.toString()))
         }
       }
+    }
+    initArguments()
+  }
+
+  private fun initArguments() {
+    if (AddTransactionFragmentArgs.fromBundle(arguments!!).personId != 0) {
+      viewModel.loadPersonInformation(AddTransactionFragmentArgs.fromBundle(arguments!!).personId)
     }
   }
 

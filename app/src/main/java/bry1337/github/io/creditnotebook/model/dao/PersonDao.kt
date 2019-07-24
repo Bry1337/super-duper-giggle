@@ -17,7 +17,7 @@ interface PersonDao {
     @get:Query("Select * from person")
     val all: List<Person>
 
-    @Query("Select * from person WHERE id == :id")
+    @Query("Select * from person WHERE id = :id")
     fun getPerson(id: Int): Person
 
     @Insert

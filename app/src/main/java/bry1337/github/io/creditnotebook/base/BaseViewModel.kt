@@ -6,6 +6,7 @@ import bry1337.github.io.creditnotebook.injection.component.ViewModelInjector
 import bry1337.github.io.creditnotebook.injection.module.NetworkModule
 import bry1337.github.io.creditnotebook.presentation.addtransaction.AddTransactionViewModel
 import bry1337.github.io.creditnotebook.presentation.home.HomeViewModel
+import bry1337.github.io.creditnotebook.presentation.persontransaction.PersonTransactionViewModel
 
 /**
  * Created by edwardbryan.abergas on 07/17/2019.
@@ -24,6 +25,8 @@ abstract class BaseViewModel : ViewModel() {
             is HomeViewModel -> injector.inject(this)
 
             is AddTransactionViewModel -> injector.inject(this)
+
+            is PersonTransactionViewModel -> injector.inject(this)
         }
     }
 }

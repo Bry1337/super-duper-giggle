@@ -17,8 +17,7 @@ import io.reactivex.schedulers.Schedulers
  *
  * @author edwardbryan.abergas@gmail.com
  */
-class HomeViewModel(private val personDao: PersonDao,
-    private val financeDao: FinanceDao) : BaseViewModel() {
+class HomeViewModel(private val personDao: PersonDao, private val financeDao: FinanceDao) : BaseViewModel() {
 
   val creditListAdapter: CreditListAdapter = CreditListAdapter()
   val errorMessage: MutableLiveData<Int> = MutableLiveData()
@@ -32,19 +31,19 @@ class HomeViewModel(private val personDao: PersonDao,
     subscription.dispose()
   }
 
-  init {
-    loadPersonList()
+  fun setAdapterclickListener(creditClickListener: CreditClickListener) {
+    creditListAdapter.setCreditClickListener(creditClickListener)
   }
 
   fun loadPersonList() {
     subscription =
         Observable.fromCallable { personDao.all }.concatMap { persons ->
-            val personList: ArrayList<Person> = ArrayList()
-            for (person in persons) {
-              person.credit = financeDao.getAllCreditsOfPerson(person.id)
-              credit += person.credit
-              personList.add(person)
-            }
+          val personList: ArrayList<Person> = ArrayList()
+          for (person: Person in persons) {
+            person.credit = financeDao.getTotalCreditsOfPerson(person.id)
+            personList.add(person)
+            credit += person.credit
+          }
           Observable.just(personList)
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { onRetrievePersonListStart() }

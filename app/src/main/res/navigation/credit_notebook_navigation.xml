@@ -13,12 +13,31 @@
     <action
         android:id="@+id/action_to_transaction"
         app:destination="@+id/addTransactionFragment" />
+    <action
+        android:id="@+id/action_to_person_transaction"
+        app:destination="@+id/personTransactionFragment" />
   </fragment>
 
   <fragment
       android:id="@+id/addTransactionFragment"
       android:name="bry1337.github.io.creditnotebook.presentation.addtransaction.AddTransactionFragment"
       android:label="@string/transaction"
-      tools:layout="@layout/fragment_add_transaction" />
+      tools:layout="@layout/fragment_add_transaction">
+    <argument
+        android:name="personId"
+        app:argType="integer" />
+  </fragment>
 
+  <fragment
+      android:id="@+id/personTransactionFragment"
+      android:name="bry1337.github.io.creditnotebook.presentation.persontransaction.PersonTransactionFragment"
+      android:label="@string/person_transaction"
+      tools:layout="@layout/fragment_person_transaction_history">
+    <action
+        android:id="@+id/action_to_add_transaction"
+        app:destination="@+id/addTransactionFragment" />
+    <argument
+        android:name="personId"
+        app:argType="integer" />
+  </fragment>
 </navigation>
