@@ -8,6 +8,7 @@ import bry1337.github.io.creditnotebook.model.Finance
 import bry1337.github.io.creditnotebook.model.Person
 import bry1337.github.io.creditnotebook.model.dao.FinanceDao
 import bry1337.github.io.creditnotebook.model.dao.PersonDao
+import bry1337.github.io.creditnotebook.util.Constants
 import bry1337.github.io.creditnotebook.util.extension.getCurrentDateTime
 import bry1337.github.io.creditnotebook.util.extension.toString
 import io.reactivex.Observable
@@ -70,7 +71,7 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
   private fun addPersonTransactionDebit(personId: Int, debitAmount: Int) {
     subscription = Observable.fromCallable {
       val date = getCurrentDateTime()
-      val dateInString = date.toString("yyyy/MM/dd HH:mm:ss")
+      val dateInString = date.toString(Constants.DATE_FORMAT)
       val finance = Finance(personId)
       finance.debit = debitAmount
       finance.date = dateInString
@@ -88,7 +89,7 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
   private fun addPersonTransactionCredit(personId: Int, creditAmount: Int) {
     subscription = Observable.fromCallable {
       val date = getCurrentDateTime()
-      val dateInString = date.toString("yyyy/MM/dd HH:mm:ss")
+      val dateInString = date.toString(Constants.DATE_FORMAT)
       val finance = Finance(personId)
       finance.credit = creditAmount
       finance.date = dateInString
@@ -107,7 +108,7 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
     subscription = Observable.fromCallable { personDao.insert(person) }
         .concatMap { personId ->
           val date = getCurrentDateTime()
-          val dateInString = date.toString("yyyy/MM/dd HH:mm:ss")
+          val dateInString = date.toString(Constants.DATE_FORMAT)
           val finance = Finance(personId.toInt())
           finance.credit = person.credit
           finance.date = dateInString
@@ -126,7 +127,7 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
     subscription = Observable.fromCallable { personDao.insert(person) }
         .concatMap { personId ->
           val date = getCurrentDateTime()
-          val dateInString = date.toString("yyyy/MM/dd HH:mm:ss")
+          val dateInString = date.toString(Constants.DATE_FORMAT)
           val finance = Finance(personId.toInt())
           finance.credit = person.credit
           finance.date = dateInString

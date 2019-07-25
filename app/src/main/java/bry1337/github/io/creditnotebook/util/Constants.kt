@@ -9,5 +9,7 @@ class Constants {
   companion object {
     val PERSON_DATABASE = "person"
     val FINANCE_DATABASE = "finance"
+
+    val DATE_FORMAT = "E MMMM d, yyyy hh:mm"
   }
 }
