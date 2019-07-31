@@ -21,4 +21,10 @@
   <string name="person_transaction">Person Transaction</string>
   <string name="something_went_wrong">Something went wrong</string>
   <string name="error_loading_person_information">Error loading person information</string>
+  <string name="empty_credit_list">Empty Credit List</string>
+    <string name="delete">Delete</string>
+  <string name="are_you_sure">Are you sure?</string>
+  <string name="ok">Ok</string>
+  <string name="undo">Undo</string>
+  <string name="error_deleting">An error occured during delete</string>
 </resources>

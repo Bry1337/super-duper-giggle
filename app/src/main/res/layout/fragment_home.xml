@@ -13,6 +13,7 @@
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:animateLayoutChanges="true"
       >
 
     <RelativeLayout
@@ -37,9 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:padding="@dimen/value_8dp"
+            android:text="@string/person_name"
             android:textSize="@dimen/value_16sp"
             android:textStyle="bold"
-            android:text="@string/person_name"
             />
 
         <TextView
@@ -48,17 +49,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:padding="@dimen/value_8dp"
+            android:text="@string/total_credit"
             android:textSize="@dimen/value_16sp"
             android:textStyle="bold"
-            android:text="@string/total_credit"
             />
 
       </RelativeLayout>
       <androidx.recyclerview.widget.RecyclerView
-          android:layout_below="@+id/rlHeader"
           android:id="@+id/rvTransactionsByPerson"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_below="@+id/rlHeader"
           android:background="@android:color/darker_gray"
           android:orientation="vertical"
           app:adapter="@{viewModel.getCreditListAdapter()}"
@@ -71,6 +72,14 @@
           android:layout_height="wrap_content"
           android:layout_centerInParent="true"
           app:mutableVisibility="@{viewModel.getLoadingVisibility()}"
+          />
+
+      <TextView
+          android:id="@+id/tvEmptyList"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerInParent="true"
+          android:visibility="gone"
           />
 
     </RelativeLayout>

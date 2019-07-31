@@ -27,5 +27,5 @@ interface PersonDao {
     fun deleteAll()
 
     @Delete
-    fun delete(person: Person)
+    fun deleteAPerson(person: Person)
 }

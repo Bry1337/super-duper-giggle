@@ -1,5 +1,6 @@
 package bry1337.github.io.creditnotebook.presentation.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -20,8 +21,10 @@ class CreditListAdapter : RecyclerView.Adapter<CreditListAdapter.CreditListViewH
 
   private lateinit var creditList: List<Person>
   private lateinit var creditClickListener: CreditClickListener
+  private lateinit var context: Context
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreditListViewHolder {
+    this.context = parent.context
     val binding: ItemPersonTotalCreditBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
         R.layout.item_person_total_credit, parent, false)
     return CreditListViewHolder(binding)

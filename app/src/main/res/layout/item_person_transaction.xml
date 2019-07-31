@@ -39,21 +39,21 @@
           android:id="@+id/tvDebit"
           android:layout_width="@dimen/value_100dp"
           android:layout_height="wrap_content"
+          android:gravity="end"
           android:padding="@dimen/value_8dp"
           android:textSize="@dimen/value_16sp"
           app:mutableText="@{viewModel.getDebit()}"
           tools:text="@string/dummy_name"
-          android:gravity="end"
           />
       <TextView
           android:id="@+id/tvCredit"
           android:layout_width="@dimen/value_100dp"
           android:layout_height="wrap_content"
+          android:gravity="end"
           android:padding="@dimen/value_8dp"
           android:textSize="@dimen/value_16sp"
           app:mutableText="@{viewModel.getCredit()}"
           tools:text="@string/dummy_name"
-          android:gravity="end"
           />
     </LinearLayout>
   </RelativeLayout>

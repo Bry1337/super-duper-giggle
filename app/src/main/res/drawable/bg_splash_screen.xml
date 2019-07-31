@@ -3,10 +3,10 @@
 
     <item android:drawable="@android:color/white"/>
 
-    <!--<item>-->
-        <!--&lt;!&ndash;<bitmap&ndash;&gt;-->
-                <!--&lt;!&ndash;android:gravity="center"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:src="@drawable/img_logo"/>&ndash;&gt;-->
-    <!--</item>-->
+    <item>
+        <bitmap
+                android:gravity="center"
+                android:src="@drawable/img_bg_splash_screen"/>
+    </item>
 
 </layer-list>

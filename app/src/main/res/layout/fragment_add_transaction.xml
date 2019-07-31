@@ -74,7 +74,7 @@
         android:layout_marginStart="@dimen/value_16dp"
         android:hint="@string/person_name_hint"
         android:imeOptions="actionNext"
-        android:inputType="textPersonName"
+        android:inputType="textCapSentences"
         android:maxLines="1"
         android:textColor="@color/colorPrimary"
         />

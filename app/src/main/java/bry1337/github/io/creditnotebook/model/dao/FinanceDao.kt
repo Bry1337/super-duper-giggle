@@ -38,6 +38,9 @@ interface FinanceDao {
   @Query("Delete from finance")
   fun deleteAll()
 
+  @Query("Delete from finance where personId = :id")
+  fun deleteTransactionsOfPerson(id: Int)
+
   @Delete
   fun delete(finance: Finance)
 }

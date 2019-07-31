@@ -1,7 +1,6 @@
 package bry1337.github.io.creditnotebook.base
 
 import android.content.Intent
-import bry1337.github.io.creditnotebook.MainActivity
 import bry1337.github.io.creditnotebook.R
 
 /**

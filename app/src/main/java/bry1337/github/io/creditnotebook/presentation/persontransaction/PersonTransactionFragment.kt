@@ -9,12 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import bry1337.github.io.creditnotebook.MainActivity
+import bry1337.github.io.creditnotebook.base.MainActivity
 import bry1337.github.io.creditnotebook.R
 import bry1337.github.io.creditnotebook.databinding.FragmentPersonTransactionHistoryBinding
 import bry1337.github.io.creditnotebook.injection.ViewModelFactory
-import bry1337.github.io.creditnotebook.model.Person
-import bry1337.github.io.creditnotebook.presentation.home.HomeFragmentDirections
 import kotlinx.android.synthetic.main.fragment_person_transaction_history.*
 
 /**
