@@ -38,7 +38,9 @@ class HomeViewModel(private val personDao: PersonDao,
 
   override fun onCleared() {
     super.onCleared()
-    subscription.dispose()
+    if(::subscription.isInitialized) {
+      subscription.dispose()
+    }
   }
 
   fun createRemoveItemDialog(context: Context) {
@@ -92,7 +94,7 @@ class HomeViewModel(private val personDao: PersonDao,
   }
 
   private fun onDeleteSuccess() {
-
+    loadPersonList()
   }
 
   private fun onDeleteError() {

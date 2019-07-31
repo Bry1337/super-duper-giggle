@@ -41,7 +41,9 @@ class PersonTransactionViewModel(private val personDao: PersonDao,
 
   override fun onCleared() {
     super.onCleared()
-    subscription.dispose()
+    if(::subscription.isInitialized) {
+      subscription.dispose()
+    }
     this.personId.value = null
   }
 

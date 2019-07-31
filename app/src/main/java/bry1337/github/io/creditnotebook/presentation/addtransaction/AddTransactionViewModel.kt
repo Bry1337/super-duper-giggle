@@ -32,7 +32,9 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
 
   override fun onCleared() {
     super.onCleared()
-    subscription.dispose()
+    if(::subscription.isInitialized) {
+      subscription.dispose()
+    }
   }
 
   fun fieldsNotEmptyForCredit(personName: String, phoneNumber: String, creditAmount: String): Boolean {

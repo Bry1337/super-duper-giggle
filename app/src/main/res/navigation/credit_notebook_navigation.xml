@@ -12,10 +12,18 @@
       tools:layout="@layout/fragment_home">
     <action
         android:id="@+id/action_to_transaction"
-        app:destination="@+id/addTransactionFragment" />
+        app:destination="@+id/addTransactionFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <action
         android:id="@+id/action_to_person_transaction"
-        app:destination="@+id/personTransactionFragment" />
+        app:destination="@+id/personTransactionFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
   </fragment>
 
   <fragment
@@ -35,7 +43,11 @@
       tools:layout="@layout/fragment_person_transaction_history">
     <action
         android:id="@+id/action_to_add_transaction"
-        app:destination="@+id/addTransactionFragment" />
+        app:destination="@+id/addTransactionFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"/>
     <argument
         android:name="personId"
         app:argType="integer" />
