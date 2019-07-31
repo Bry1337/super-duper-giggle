@@ -8,6 +8,7 @@ import bry1337.github.io.creditnotebook.model.Finance
 import bry1337.github.io.creditnotebook.model.Person
 import bry1337.github.io.creditnotebook.model.dao.FinanceDao
 import bry1337.github.io.creditnotebook.model.dao.PersonDao
+import bry1337.github.io.creditnotebook.network.CreditApi
 import bry1337.github.io.creditnotebook.util.Constants
 import bry1337.github.io.creditnotebook.util.extension.getCurrentDateTime
 import bry1337.github.io.creditnotebook.util.extension.toString
@@ -15,6 +16,7 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by edwardbryan.abergas on 07/18/2019.
@@ -22,6 +24,9 @@ import io.reactivex.schedulers.Schedulers
  * @author edwardbryan.abergas@gmail.com
  */
 class AddTransactionViewModel(private val personDao: PersonDao, private val financeDao: FinanceDao) : BaseViewModel() {
+
+  @Inject
+  lateinit var creditApi: CreditApi
 
   val errorMessage: MutableLiveData<Int> = MutableLiveData()
   val successMessage: MutableLiveData<Int> = MutableLiveData()
