@@ -19,13 +19,13 @@ data class Person(@SerializedName("name") var name: String? = null) {
   var phoneNumber: String? = null
 
   @SerializedName("debit")
-  var debit: Int = 0
+  var debit: Double = 0.0
 
   @SerializedName("credit")
-  var credit: Int = 0
+  var credit: Double = 0.0
 
   @SerializedName("totalCredit")
-  var totalCredit: Int = credit - debit
+  var totalCredit: Double = credit - debit
 
   @SerializedName("date")
   var date: String? = null

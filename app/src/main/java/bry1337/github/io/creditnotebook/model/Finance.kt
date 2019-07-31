@@ -15,12 +15,16 @@ data class Finance(@SerializedName("personId") var personId: Int = 0) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 
+    @SerializedName("phoneNumber")
+    var phoneNumber: String? = null
+
     @SerializedName("debit")
-    var debit: Int = 0
+    var debit: Double = 0.0
 
     @SerializedName("credit")
-    var credit: Int = 0
+    var credit: Double = 0.0
 
     @SerializedName("date")
     var date: String? = null
+
 }

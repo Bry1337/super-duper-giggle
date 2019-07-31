@@ -68,7 +68,7 @@ class AddTransactionFragment : Fragment() {
           viewModel.createPersonObject(
               edtPersonName.text.toString(),
               edtPhoneNumber.text.toString(),
-              Integer.parseInt(edtCredit.text.toString()), 0)
+              edtCredit.text.toString().toDouble(), 0.0)
         }
       } else {
         if (viewModel.fieldsNotEmptyForDebit(
@@ -77,7 +77,7 @@ class AddTransactionFragment : Fragment() {
           viewModel.createPersonObject(
               edtPersonName.text.toString(),
               "",
-              0, Integer.parseInt(edtDebit.text.toString()))
+              0.0, edtDebit.text.toString().toDouble())
         }
       }
     }

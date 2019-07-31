@@ -27,7 +27,7 @@ class PersonTransactionViewModel(private val personDao: PersonDao,
   val personName: MutableLiveData<String> = MutableLiveData()
   val errorMessage: MutableLiveData<Int> = MutableLiveData()
   val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-  val totalCredits: MutableLiveData<Int> = MutableLiveData()
+  val totalCredits: MutableLiveData<Double> = MutableLiveData()
   val position: MutableLiveData<Int> = MutableLiveData()
 
   private val personId: MutableLiveData<Int> = MutableLiveData()

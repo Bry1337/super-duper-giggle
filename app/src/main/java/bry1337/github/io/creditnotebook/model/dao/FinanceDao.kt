@@ -24,10 +24,10 @@ interface FinanceDao {
   fun getFinance(id: Int): Finance
 
   @Query("Select SUM(credit) as total from finance where personId = :id")
-  fun getAllCreditsOfPerson(id: Int): Int
+  fun getAllCreditsOfPerson(id: Int): Double
 
   @Query("Select SUM(credit) - SUM(debit) as total from finance where personId = :id")
-  fun getTotalCreditsOfPerson(id: Int): Int
+  fun getTotalCreditsOfPerson(id: Int): Double
 
   @Query("Select * from finance where personId = :id")
   fun getTransactionhistoryOfPerson(id: Int): List<Finance>

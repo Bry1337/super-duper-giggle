@@ -26,7 +26,7 @@ class HomeViewModel(private val personDao: PersonDao,
   val creditListAdapter: CreditListAdapter = CreditListAdapter()
   val errorMessage: MutableLiveData<Int> = MutableLiveData()
   val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
-  val totalCredits: MutableLiveData<Int> = MutableLiveData()
+  val totalCredits: MutableLiveData<Double> = MutableLiveData()
   val emptyList: MutableLiveData<Int> = MutableLiveData()
 
   private lateinit var removeItemDialog: AlertDialog
@@ -34,7 +34,7 @@ class HomeViewModel(private val personDao: PersonDao,
   private lateinit var subscription: Disposable
   private var person: Person? = null
   private var pos: Int = 0
-  private var credit: Int = 0
+  private var credit: Double = 0.0
 
   override fun onCleared() {
     super.onCleared()
@@ -120,7 +120,7 @@ class HomeViewModel(private val personDao: PersonDao,
     errorMessage.value = null
     totalCredits.value = null
     emptyList.value = null
-    credit = 0
+    credit = 0.0
   }
 
   private fun onRetrievePersonListFinish() {

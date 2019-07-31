@@ -83,7 +83,7 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
         })
   }
 
-  fun createPersonObject(personName: String, phoneNumber: String, creditAmount: Int, debitAmount: Int) {
+  fun createPersonObject(personName: String, phoneNumber: String, creditAmount: Double, debitAmount: Double) {
     val person = Person(personName)
     if (personObject.value != null) {
       if (creditAmount > 0) {
@@ -103,7 +103,7 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
     }
   }
 
-  private fun addPersonTransactionDebit(personId: Int, debitAmount: Int) {
+  private fun addPersonTransactionDebit(personId: Int, debitAmount: Double) {
     subscription = Observable.fromCallable {
       val date = getCurrentDateTime()
       val dateInString = date.toString(Constants.DATE_FORMAT)
@@ -121,7 +121,7 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
         })
   }
 
-  private fun addPersonTransactionCredit(personId: Int, creditAmount: Int) {
+  private fun addPersonTransactionCredit(personId: Int, creditAmount: Double) {
     subscription = Observable.fromCallable {
       val date = getCurrentDateTime()
       val dateInString = date.toString(Constants.DATE_FORMAT)

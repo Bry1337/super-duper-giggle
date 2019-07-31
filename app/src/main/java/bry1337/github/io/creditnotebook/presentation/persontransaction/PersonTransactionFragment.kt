@@ -46,7 +46,7 @@ class PersonTransactionFragment : Fragment() {
     binding.viewModel = viewModel
     viewModel.createRemoveItemDialog(activityContext)
     viewModel.totalCredits.observe(this, Observer { totalCredit ->
-      if (totalCredit != 0) tvPersonTransactionTotalCredits.text = String.format(
+      if (totalCredit != 0.0) tvPersonTransactionTotalCredits.text = String.format(
           getString(R.string.total_credit_placeholder), totalCredit.toString())
     })
     val personId = PersonTransactionFragmentArgs.fromBundle(arguments!!).personId
