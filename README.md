@@ -1,8 +1,16 @@
 
+
 # Credit Notebook Application built in Kotlin-MVVM Pattern
+
+The purpose of this project is to be open source and to showcase the usage of the said frameworks and the flexibility using MVVM design pattern. MVVM (Model-View-ViewModel) is used to make the architecture cleaner, more readable and maintanable.
+
+The goal of this app is to be used to note and sum up all the credits that people owe you and that credit will be deducted if those people paid you by adding a debit onto their transaction. This also includes dates to track on when did the transaction took place.
+
+Future features will also be added as this project is still on going.
 
 ## Note
 This project is still being written and improved, some features may not be available.
+Network layer has been implemented and prepared for future features.
  
 
 ## Framework Included
@@ -13,15 +21,9 @@ This project is still being written and improved, some features may not be avail
  5. Navigation Component
  6. Room
  
-## Purpose
-The purpose of this project is to be open source and to showcase the usage of the said frameworks and the flexibility using MVVM design pattern. 
-
-The goal of this app is to be used to note and sum up all the credits that people owe you and that credit will be deducted if those people paid you by adding a debit onto their transaction. This also includes dates to track on when did the transaction took place.
-
-Future features will also be added as this project is still on going.
 
 ## Design Pattern
-MVP (Model-View-Presenter) is the design pattern used to build this to separate the layers and entities from each other specially logic [Clean Architecture](https://github.com/Bry1337/fuzzy-computing-machine). This also follows [SOLID Principle](https://www.baeldung.com/solid-principles) for a better de-coupling and structure of the app.
+MVVM (Model-View-ViewModel) is the design pattern used to build this to separate the layers and entities from each other specially logic [Clean Architecture](https://github.com/Bry1337/fuzzy-computing-machine). This also follows [SOLID Principle](https://www.baeldung.com/solid-principles) for a better de-coupling and structure of the app.
 
 ## Demo
 ![Animated Gif](/art/raw.gif)
