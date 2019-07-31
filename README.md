@@ -21,7 +21,7 @@ The goal of this app is to be used to note and sum up all the credits that peopl
 Future features will also be added as this project is still on going.
 
 ## Design Pattern
-MVP (Model-View-Presenter) is the design pattern used to build this to separate the layers and entities from each other specially logic [Clean Architecture](https://github.com/Bry1337/fuzzy-computing-machine). This also includes [SOLID Principle](https://www.baeldung.com/solid-principles) so when you try to change anything the whole application would not collapse, basically speaking
+MVP (Model-View-Presenter) is the design pattern used to build this to separate the layers and entities from each other specially logic [Clean Architecture](https://github.com/Bry1337/fuzzy-computing-machine). This also follows [SOLID Principle](https://www.baeldung.com/solid-principles) for a better de-coupling and structure of the app.
 
 # LICENSE
 MIT License
