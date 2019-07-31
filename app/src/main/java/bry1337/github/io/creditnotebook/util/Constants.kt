@@ -7,6 +7,8 @@ package bry1337.github.io.creditnotebook.util
  */
 class Constants {
   companion object {
+    val BASE_URL = "http://bry1337.github.io"
+
     val PERSON_DATABASE = "person"
     val FINANCE_DATABASE = "finance"
 

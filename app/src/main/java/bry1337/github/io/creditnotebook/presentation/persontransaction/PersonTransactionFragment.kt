@@ -9,10 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import bry1337.github.io.creditnotebook.base.MainActivity
 import bry1337.github.io.creditnotebook.R
 import bry1337.github.io.creditnotebook.databinding.FragmentPersonTransactionHistoryBinding
 import bry1337.github.io.creditnotebook.injection.ViewModelFactory
+import bry1337.github.io.creditnotebook.util.RecyclerViewSwipeRemoveListener
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_person_transaction_history.*
 
 /**
@@ -41,6 +44,7 @@ class PersonTransactionFragment : Fragment() {
     viewModel = ViewModelProviders.of(this, ViewModelFactory(activityContext))
         .get(PersonTransactionViewModel::class.java)
     binding.viewModel = viewModel
+    viewModel.createRemoveItemDialog(activityContext)
     viewModel.totalCredits.observe(this, Observer { totalCredit ->
       if (totalCredit != 0) tvPersonTransactionTotalCredits.text = String.format(
           getString(R.string.total_credit_placeholder), totalCredit.toString())
@@ -51,6 +55,9 @@ class PersonTransactionFragment : Fragment() {
     btnAddNewTransaction.setOnClickListener {
       findNavController().navigate(PersonTransactionFragmentDirections.actionToAddTransaction(personId))
     }
+    ItemTouchHelper(
+        RecyclerViewSwipeRemoveListener(activityContext, viewModel, 0, ItemTouchHelper.LEFT))
+        .attachToRecyclerView(rvPersonTransaction)
   }
 
 }

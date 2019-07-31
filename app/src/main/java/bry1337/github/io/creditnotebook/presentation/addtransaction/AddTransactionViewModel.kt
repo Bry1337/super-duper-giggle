@@ -35,6 +35,34 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
     subscription.dispose()
   }
 
+  fun fieldsNotEmptyForCredit(personName: String, phoneNumber: String, creditAmount: String): Boolean {
+    if (personName.isBlank()) {
+      errorMessage.value = R.string.person_name_cannot_be_blank
+      return false
+    }
+    if (phoneNumber.isBlank()) {
+      errorMessage.value = R.string.phone_number_cannot_be_blank
+      return false
+    }
+    if (creditAmount.isBlank()) {
+      errorMessage.value = R.string.phone_number_cannot_be_blank
+      return false
+    }
+    return true
+  }
+
+  fun fieldsNotEmptyForDebit(personName: String, debitAmount: String): Boolean {
+    if (personName.isBlank()) {
+      errorMessage.value = R.string.person_name_cannot_be_blank
+      return false
+    }
+    if (debitAmount.isBlank()) {
+      errorMessage.value = R.string.debit_value_cannot_be_blank
+      return false
+    }
+    return true
+  }
+
   fun loadPersonInformation(personId: Int) {
     subscription = Observable.fromCallable { personDao.getPerson(personId) }
         .subscribeOn(Schedulers.io())
@@ -53,7 +81,7 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
     if (personObject.value != null) {
       if (creditAmount > 0) {
         addPersonTransactionCredit(personObject.value!!.id, creditAmount)
-      }else{
+      } else {
         addPersonTransactionDebit(personObject.value!!.id, debitAmount)
       }
     } else {
@@ -79,8 +107,8 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
     }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe { onInsertProcessStart() }
         .doOnTerminate { onInsertProcessFinish() }
-        .subscribe({ result ->
-          onSuccessfulInsert(result)
+        .subscribe({ _ ->
+          onSuccessfulInsert()
         }, {
           onInsertError()
         })
@@ -97,8 +125,8 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
     }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe { onInsertProcessStart() }
         .doOnTerminate { onInsertProcessFinish() }
-        .subscribe({ result ->
-          onSuccessfulInsert(result)
+        .subscribe({ _ ->
+          onSuccessfulInsert()
         }, {
           onInsertError()
         })
@@ -116,8 +144,8 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe { onInsertProcessStart() }
         .doOnTerminate { onInsertProcessFinish() }
-        .subscribe({ result ->
-          onSuccessfulInsert(result)
+        .subscribe({ _ ->
+          onSuccessfulInsert()
         }, {
           onInsertError()
         })
@@ -135,14 +163,14 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
         }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
         .doOnSubscribe { onInsertProcessStart() }
         .doOnTerminate { onInsertProcessFinish() }
-        .subscribe({ result ->
-          onSuccessfulInsert(result)
+        .subscribe({ _ ->
+          onSuccessfulInsert()
         }, {
           onInsertError()
         })
   }
 
-  private fun onSuccessfulInsert(result: Long) {
+  private fun onSuccessfulInsert() {
     successMessage.value = R.string.transaction_has_been_added
   }
 
@@ -170,33 +198,5 @@ class AddTransactionViewModel(private val personDao: PersonDao, private val fina
 
   private fun onLoadPersonInformationError() {
     errorMessage.value = R.string.error_loading_person_information
-  }
-
-  fun fieldsNotEmptyForCredit(personName: String, phoneNumber: String, creditAmount: String): Boolean {
-    if (personName.isBlank()) {
-      errorMessage.value = R.string.person_name_cannot_be_blank
-      return false
-    }
-    if (phoneNumber.isBlank()) {
-      errorMessage.value = R.string.phone_number_cannot_be_blank
-      return false
-    }
-    if (creditAmount.isBlank()) {
-      errorMessage.value = R.string.phone_number_cannot_be_blank
-      return false
-    }
-    return true
-  }
-
-  fun fieldsNotEmptyForDebit(personName: String, debitAmount: String): Boolean {
-    if (personName.isBlank()) {
-      errorMessage.value = R.string.person_name_cannot_be_blank
-      return false
-    }
-    if (debitAmount.isBlank()) {
-      errorMessage.value = R.string.debit_value_cannot_be_blank
-      return false
-    }
-    return true
   }
 }
